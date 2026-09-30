@@ -1,0 +1,357 @@
+/* ==========================================================================
+   SoundWave - Estilos do Player Completo, Mini Player e Fila (player.css)
+   ========================================================================== */
+
+/* --- Mini Player Flutuante / Fixo --- */
+#mini-player {
+  position: fixed;
+  bottom: calc(var(--mobile-nav-height) + 8px);
+  left: 12px;
+  right: 12px;
+  height: 64px;
+  background: rgba(14, 19, 34, 0.92);
+  border: 1px solid var(--border-active);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--primary-glow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  z-index: 80;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  overflow: hidden;
+}
+
+#mini-player.hidden {
+  transform: translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Barra de progresso sutil no topo do Mini Player */
+.mini-player-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: var(--gradient-primary);
+  box-shadow: 0 0 8px var(--primary-neon);
+  transition: width 0.2s linear;
+}
+
+.mini-player-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mini-player-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.mini-player-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.mini-player-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-player-artist {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-player-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-mini-control {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.btn-mini-play {
+  background: var(--gradient-primary);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+/* --- Player Completo em Tela Cheia / Modal (player.html) --- */
+#full-player-modal {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center top, #1e103d 0%, #080b12 85%);
+  z-index: 9500;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px 36px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.4s ease;
+  overflow-y: auto;
+}
+
+#full-player-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.full-player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.full-player-header-title {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.full-player-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Capa Grande e Efeito Glow */
+.full-player-cover-container {
+  position: relative;
+  width: 82%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 32px;
+}
+
+.full-player-cover-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 28px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, transparent 70%);
+  filter: blur(24px);
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+
+.is-playing .full-player-cover-glow {
+  opacity: 0.9;
+  animation: glowPulsate 3s ease-in-out infinite alternate;
+}
+
+.full-player-cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(109, 40, 217, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes glowPulsate {
+  0% { transform: scale(0.96); opacity: 0.6; }
+  100% { transform: scale(1.04); opacity: 1; filter: blur(28px); }
+}
+
+/* Detalhes da Música e Artista */
+.full-player-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.full-player-meta-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.full-player-song-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.full-player-artist-name {
+  font-size: 1rem;
+  color: var(--primary-neon);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Barra de Progresso com Seek */
+.progress-container {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.progress-bar-wrapper {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  position: relative;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.progress-bar-handle {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 14px;
+  height: 14px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease;
+}
+
+.progress-bar-wrapper:hover .progress-bar-handle {
+  transform: translateY(-50%) scale(1);
+}
+
+.progress-time-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Controles de Reprodução */
+.full-player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.btn-ctrl {
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  padding: 10px;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.btn-ctrl:hover {
+  color: #ffffff;
+}
+
+.btn-ctrl.active {
+  color: var(--primary-neon);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.btn-ctrl-play-lg {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 25px var(--primary-glow);
+}
+
+.btn-ctrl-play-lg:hover {
+  filter: brightness(1.15);
+  transform: scale(1.06);
+}
+
+/* Controle de Volume */
+.volume-control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+  color: var(--text-muted);
+}
+
+.volume-slider {
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary-neon);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--primary-glow);
+}
+
+/* Ações Inferiores (Fila de Reprodução & Compartilhar) */
+.full-player-bottom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-glass);
+}

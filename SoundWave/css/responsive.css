@@ -1,0 +1,231 @@
+/* ==========================================================================
+   SoundWave - Responsividade e Navegação Mobile/Desktop (responsive.css)
+   ========================================================================== */
+
+/* --- Barra de Navegação Mobile Inferior (Mobile Bottom Bar) --- */
+#mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--mobile-nav-height);
+  background: rgba(8, 11, 18, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 90;
+  padding: 0 8px;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+
+.mobile-nav-item i {
+  font-size: 1.25rem;
+}
+
+.mobile-nav-item.active {
+  color: var(--primary-neon);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* --- Sidebar Desktop (Padrão oculta em telas pequenas) --- */
+#desktop-sidebar {
+  display: none;
+  width: var(--sidebar-width);
+  background: #080b12;
+  border-right: 1px solid var(--border-glass);
+  flex-direction: column;
+  padding: 24px 16px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.sidebar-logo {
+  padding: 0 12px 28px;
+}
+
+.sidebar-logo img, .sidebar-logo svg {
+  height: 40px;
+  width: auto;
+}
+
+.sidebar-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.sidebar-nav-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-subtle);
+  padding: 8px 14px 4px;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.sidebar-nav-link i {
+  font-size: 1.15rem;
+  width: 22px;
+  text-align: center;
+}
+
+.sidebar-nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-nav-link.active {
+  color: #ffffff;
+  background: var(--gradient-primary);
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border-glass);
+  margin: 16px 0;
+}
+
+/* --- Media Queries: Telas Tablets e Desktops (>= 768px) --- */
+@media (min-width: 768px) {
+  /* Oculta navegação mobile */
+  #mobile-bottom-nav {
+    display: none;
+  }
+
+  /* Exibe a Sidebar Desktop */
+  #desktop-sidebar {
+    display: flex;
+  }
+
+  .main-content-wrapper {
+    padding-bottom: calc(var(--player-height) + 20px);
+  }
+
+  /* Mini Player Desktop se transforma em barra de player fixa na base */
+  #mini-player {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    height: var(--player-height);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 0 28px;
+    background: #0b0e18;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .mini-player-left {
+    max-width: 280px;
+  }
+
+  /* Controles centrais expandidos na versão desktop */
+  .desktop-player-controls {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 2;
+    max-width: 580px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+
+  .music-row-album {
+    display: block;
+  }
+}
+
+/* --- Telas Grandes (>= 1024px) --- */
+@media (min-width: 1024px) {
+  .main-view-container {
+    padding: 28px 40px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 24px;
+  }
+
+  .home-hero-banner {
+    padding: 48px 40px;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+}
+
+/* --- Telas Pequenas (Mobile < 480px) --- */
+@media (max-width: 480px) {
+  .main-view-container {
+    padding: 16px 12px;
+  }
+
+  .home-greeting-title {
+    font-size: 1.4rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .music-card {
+    padding: 10px;
+  }
+
+  .music-card-title {
+    font-size: 0.88rem;
+  }
+
+  .home-hero-banner {
+    padding: 24px 20px;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .full-player-cover-container {
+    width: 70%;
+    margin-bottom: 20px;
+  }
+}

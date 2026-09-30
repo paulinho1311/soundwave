@@ -1,0 +1,631 @@
+/* ==========================================================================
+   SoundWave - Estilos da Home, Seções e Vistas (home.css)
+   ========================================================================== */
+
+/* --- Saudação e Topo --- */
+.home-welcome-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.home-greeting-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.home-greeting-sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+/* --- Barra de Pesquisa Integrada --- */
+.quick-search-box {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.quick-search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+  padding: 14px 20px 14px 46px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: var(--transition-normal);
+}
+
+.quick-search-input:focus {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--primary-light);
+  box-shadow: 0 0 16px var(--primary-glow);
+}
+
+.quick-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  pointer-events: none;
+}
+
+/* --- Banner de Destaque (Hero Banner) --- */
+.home-hero-banner {
+  background: linear-gradient(135deg, rgba(109, 40, 217, 0.7) 0%, rgba(168, 85, 247, 0.4) 100%),
+              url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80') center/cover;
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(109, 40, 217, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at left, rgba(8, 11, 18, 0.6) 0%, rgba(8, 11, 18, 0.2) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--primary-neon);
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.hero-desc {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* --- Títulos de Seção --- */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.section-link {
+  color: var(--primary-neon);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.section-link:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* --- Grid e Scroll de Músicas --- */
+.section-container {
+  margin-bottom: 36px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 18px;
+}
+
+.cards-scroll-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+}
+
+/* --- Card de Música Individual --- */
+.music-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  transition: var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.music-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.music-card-cover-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: #161c2f;
+}
+
+.music-card-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.music-card:hover .music-card-cover {
+  transform: scale(1.05);
+}
+
+/* Botão de Play flutuante no Card */
+.music-card-play-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px var(--primary-glow);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: var(--transition-normal);
+}
+
+.music-card:hover .music-card-play-btn,
+.music-card.is-playing .music-card-play-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.music-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.music-card-artist {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* --- Cards Horizontais de Playlists --- */
+.playlist-horizontal-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  transition: var(--transition-normal);
+  cursor: pointer;
+  min-width: 240px;
+  flex: 1;
+}
+
+.playlist-horizontal-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-active);
+  transform: translateX(4px);
+}
+
+.playlist-thumb {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.playlist-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.playlist-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
+
+.playlist-tracks-count {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* --- Cards de Artista Circular --- */
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.artist-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--primary-light);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(109, 40, 217, 0.2);
+}
+
+.artist-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border: 2px solid transparent;
+  transition: var(--transition-normal);
+}
+
+.artist-card:hover .artist-avatar {
+  border-color: var(--primary-neon);
+  box-shadow: 0 0 16px var(--primary-glow);
+}
+
+.artist-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.artist-role {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* --- Estilos da Página de Artista (artista.html) --- */
+.artist-hero-header {
+  height: 280px;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+  margin-bottom: 28px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--border-glass);
+}
+
+.artist-hero-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #080b12 0%, rgba(8, 11, 18, 0.4) 60%, transparent 100%);
+}
+
+.artist-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  width: 100%;
+}
+
+.artist-hero-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: var(--shadow-md);
+}
+
+.artist-hero-details h1 {
+  font-size: 2.4rem;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.artist-stats-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* Abas de Navegação (Artista, Pesquisa, etc.) */
+.nav-tabs {
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+.nav-tab-btn {
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  transition: var(--transition-fast);
+}
+
+.nav-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.nav-tab-btn.active {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 2px 12px var(--primary-glow);
+}
+
+/* --- Lista de Músicas / Tabela Estilo Streaming --- */
+.music-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.music-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  cursor: pointer;
+  background: transparent;
+}
+
+.music-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.music-row.active {
+  background: rgba(168, 85, 247, 0.15);
+  border-left: 3px solid var(--primary-light);
+}
+
+.music-row-index {
+  width: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+}
+
+.music-row:hover .music-row-index {
+  display: none;
+}
+
+.music-row-play-icon {
+  display: none;
+  width: 24px;
+  text-align: center;
+  color: var(--primary-neon);
+}
+
+.music-row:hover .music-row-play-icon {
+  display: block;
+}
+
+.music-row-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+}
+
+.music-row-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.music-row-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-row-artist {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.music-row-album {
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  flex: 1;
+  display: none; /* habilitado em telas maiores */
+}
+
+.music-row-duration {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.music-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- Tela Premium (Seção 21) --- */
+.premium-card-hero {
+  background: linear-gradient(135deg, #2e1065 0%, #1e1b4b 60%, #0f172a 100%);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.25);
+  margin-bottom: 32px;
+}
+
+.premium-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 360px;
+  margin: 28px auto;
+  text-align: left;
+}
+
+.premium-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.premium-benefit-item i {
+  color: var(--success);
+  font-size: 1.15rem;
+}
+
+/* --- Tela de Perfil (Seção 15) --- */
+.profile-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+}
+
+.profile-avatar-lg {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid var(--primary-light);
+  box-shadow: 0 0 20px var(--primary-glow);
+  margin-bottom: 16px;
+}
+
+.profile-stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.profile-stat-box {
+  text-align: center;
+}
+
+.profile-stat-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-neon);
+}
+
+.profile-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.profile-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.profile-menu-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-active);
+  transform: translateX(4px);
+}
